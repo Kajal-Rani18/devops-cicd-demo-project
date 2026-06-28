@@ -1,10 +1,11 @@
-pipeline {
+ pipeline {
     agent any
 
     stages {
         stage('checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Kajal-Rani18/devops-cicd-demo-project.git'
+                git branch: 'main', credentialsId: 'cicd-cred', url: 'https://github.com/Kajal-Rani18/devops-cicd-demo-project.git'
+
             }
         }
         stage('docker build image') {
@@ -30,3 +31,5 @@ pipeline {
                 '''
             }
         }
+    }
+}
