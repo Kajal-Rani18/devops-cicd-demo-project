@@ -5,7 +5,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch: 'main',
+                git branch: 'version-1.1',
                     credentialsId: 'cicd-cred',
                     url: 'https://github.com/Kajal-Rani18/devops-cicd-demo-project.git'
             }
