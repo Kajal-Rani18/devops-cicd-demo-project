@@ -1,19 +1,53 @@
- pipeline {
+pipeline {
     agent any
 
     stages {
-        stage('checkout') {
-            steps {
-                git branch: 'main', credentialsId: 'cicd-cred', url: 'https://github.com/Kajal-Rani18/devops-cicd-demo-project.git'
 
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    credentialsId: 'cicd-cred',
+                    url: 'https://github.com/Kajal-Rani18/devops-cicd-demo-project.git'
             }
         }
-        stage('docker build image') {
+
+        stage('Verify Node Environment') {
+            steps {
+                sh '''
+                echo "Node Version:"
+                node -v
+
+                echo "NPM Version:"
+                npm -v
+                '''
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Lint') {
+            steps {
+                sh 'npm run lint'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'npm test'
+            }
+        }
+
+        stage('Docker Build Image') {
             steps {
                 sh 'docker build -t nodeapp .'
             }
         }
-        stage('stop old container') {
+
+        stage('Stop Old Container') {
             steps {
                 sh '''
                 docker stop nodeapp || true
@@ -21,13 +55,14 @@
                 '''
             }
         }
-        stage('deploy container') {
+
+        stage('Deploy Container') {
             steps {
                 sh '''
                 docker run -d \
                 --name nodeapp \
                 -p 3000:3000 \
-                nodeapp 
+                nodeapp
                 '''
             }
         }

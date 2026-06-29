@@ -1,7 +1,6 @@
 const http = require('http');
+const { getMessage } = require('./app');
 
-http.createServer((req,res)=>{
-    res.end('Hello from Jenkins CI/CD\nStage1. Version 2 deployed automatically\nStage2. Testing of the Webhook');
+http.createServer((req, res) => {
+    res.end(getMessage());
 }).listen(3000);
-
-
