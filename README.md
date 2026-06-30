@@ -66,3 +66,13 @@ Application Available on Browser
 - Jenkins Nodes & Executors
 - CI/CD Pipeline Design
 - End-to-End Deployment Debugging
+
+Version 1.1 Deployment and Achievements
+
+-Node.js environment verification
+-Dependency installation
+-ESLint code quality checks
+-Jest automated tests
+-Docker build
+-Automated deployment
+-GitHub webhook integration
