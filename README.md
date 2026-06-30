@@ -69,10 +69,10 @@ Application Available on Browser
 
 Version 1.1 Deployment and Achievements
 
--Node.js environment verification
--Dependency installation
--ESLint code quality checks
--Jest automated tests
--Docker build
--Automated deployment
--GitHub webhook integration
+1.Node.js environment verification
+2.Dependency installation
+3.ESLint code quality checks
+4.Jest automated tests
+5.Docker build
+6.Automated deployment
+7.GitHub webhook integration
