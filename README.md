@@ -14,12 +14,11 @@ This project demonstrates a complete Continuous Integration and Continuous Deplo
 - Node.js
 - Docker
 - Jenkins
-- GitHub
 - GitHub Webhooks
 - NGINX
 - Ubuntu (AWS EC2)
 - Linux Commands
-- Git
+- Git and Github
 
  🔄 CI/CD Workflow
 
