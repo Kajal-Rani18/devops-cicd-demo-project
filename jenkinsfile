@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+       IMAGE_NAME = "nodeapp"
+     }
+
+
     stages {
 
         stage('Checkout') {
@@ -40,28 +45,28 @@ pipeline {
 
         stage('Docker Build Image') {
             steps {
-                sh 'docker build -t nodeapp .'
+                sh 'docker build -t ${IMAGE_NAME}:${BUILD_NUMBER} .'
             }
         }
 
         stage('Stop Old Container') {
             steps {
                 sh '''
-                docker stop nodeapp || true
-                docker rm nodeapp || true
+                docker stop ${IMAGE_NAME} || true
+                docker rm ${IMAGE_NAME} || true
                 '''
             }
         }
 
         stage('Deploy Container') {
             steps {
-                sh '''
+               sh '''
                 docker run -d \
-                --name nodeapp \
+                --name ${IMAGE_NAME} \
                 -p 3000:3000 \
-                nodeapp
+                ${IMAGE_NAME}:${BUILD_NUMBER}
                 '''
             }
         }
     }
-}
+} 
